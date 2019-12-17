@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -56,7 +56,6 @@
 				8704CE45E0A9F261B2639E06 /* Pods-Reciplease.debug.xcconfig */,
 				2AFC17F1E22684C159F62E0B /* Pods-Reciplease.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,15 +80,47 @@
 		C17515F523A7F9050051AEDA /* Reciplease */ = {
 			isa = PBXGroup;
 			children = (
-				C17515F623A7F9050051AEDA /* AppDelegate.swift */,
-				C17515F823A7F9050051AEDA /* SceneDelegate.swift */,
-				C17515FA23A7F9050051AEDA /* ViewController.swift */,
-				C17515FC23A7F9050051AEDA /* Main.storyboard */,
-				C17515FF23A7F9060051AEDA /* Assets.xcassets */,
-				C175160123A7F9060051AEDA /* LaunchScreen.storyboard */,
-				C175160423A7F9060051AEDA /* Info.plist */,
+				C1781D8723A9413000092D52 /* Model */,
+				C1781D8623A9412900092D52 /* View */,
+				C1781D8523A9407100092D52 /* Controller */,
+				C1781D8823A9417800092D52 /* Supporting Files */,
 			);
 			path = Reciplease;
+			sourceTree = "<group>";
+		};
+		C1781D8523A9407100092D52 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C17515FA23A7F9050051AEDA /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C1781D8623A9412900092D52 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C17515FC23A7F9050051AEDA /* Main.storyboard */,
+				C175160123A7F9060051AEDA /* LaunchScreen.storyboard */,
+				C17515FF23A7F9060051AEDA /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C1781D8723A9413000092D52 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C1781D8823A9417800092D52 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C17515F823A7F9050051AEDA /* SceneDelegate.swift */,
+				C17515F623A7F9050051AEDA /* AppDelegate.swift */,
+				C175160423A7F9060051AEDA /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,7 +387,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7DBH9F9Z39;
-				INFOPLIST_FILE = Reciplease/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Reciplease/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -375,7 +406,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7DBH9F9Z39;
-				INFOPLIST_FILE = Reciplease/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Reciplease/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
