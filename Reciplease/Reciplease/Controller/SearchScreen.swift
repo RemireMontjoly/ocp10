@@ -7,24 +7,59 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchScreen: UIViewController {
+
+    private var recipes = [Recipe]()
+  //  private let repository = RecipeRepository()
+    private var ingredientsArray = [String]()
+
+    @IBOutlet weak var ingredientTextField: UITextField!
+    @IBOutlet weak var ingredientListLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func addButton(_ sender: UIButton) {
+        if ingredientsArray.count == 0 {
+            ingredientListLabel.text = "- \(ingredientTextField.text ?? "")"
+            clearTextField()
+        } else {
+            ingredientListLabel.text?.append("\n- \(ingredientTextField.text ?? "")")
+            clearTextField()
+        }
     }
-    */
 
+    @IBAction func clearButton(_ sender: UIButton) {
+        ingredientsArray.removeAll()
+        ingredientListLabel.text = nil
+    }
+
+    @IBAction func searchButton(_ sender: UIButton) {
+        let ingredients = ingredientsArray.joined(separator: ",")
+        searchForRecipes(ingredient: ingredients)
+    }
+
+    func searchForRecipes(ingredient: String) {
+        let parameters: Parameters = ["app_id": app_id, "app_key": app_key, "q": ingredient]
+        AF.request("https://api.edamam.com/search?", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).responseDecodable(of: JsonObject.self) { response in
+            print(response)
+            switch response.result {
+            case.success(let success):
+                self.recipes = success.hits.map { $0.recipe }
+                print(success.hits)
+            case.failure(let failure):
+                print(failure)
+            }
+        }
+    }
+
+    func clearTextField() {
+        ingredientsArray.append(ingredientTextField.text ?? "")
+        ingredientTextField.text = nil
+        view.endEditing(true)
+    }
 }
