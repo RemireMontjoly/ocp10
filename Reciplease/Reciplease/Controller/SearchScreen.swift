@@ -12,7 +12,7 @@ import Alamofire
 class SearchScreen: UIViewController {
 
     private var recipes = [Recipe]()
-  //  private let repository = RecipeRepository()
+    //  private let repository = RecipeRepository()
     private var ingredientsArray = [String]()
 
     @IBOutlet weak var ingredientTextField: UITextField!
@@ -43,23 +43,33 @@ class SearchScreen: UIViewController {
         searchForRecipes(ingredient: ingredients)
     }
 
-    func searchForRecipes(ingredient: String) {
-        let parameters: Parameters = ["app_id": app_id, "app_key": app_key, "q": ingredient]
-        AF.request("https://api.edamam.com/search?", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).responseDecodable(of: JsonObject.self) { response in
-            print(response)
-            switch response.result {
-            case.success(let success):
-                self.recipes = success.hits.map { $0.recipe }
-                print(success.hits)
-            case.failure(let failure):
-                print(failure)
-            }
-        }
-    }
-
     func clearTextField() {
         ingredientsArray.append(ingredientTextField.text ?? "")
         ingredientTextField.text = nil
         view.endEditing(true)
+    }
+
+    func searchForRecipes(ingredient: String) {
+
+        let parameters: Parameters = ["app_id": app_id, "app_key": app_key, "q": ingredient]
+
+        AF.request("https://api.edamam.com/search?", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).responseDecodable(of: JsonObject.self) { response in
+            switch response.result {
+
+            case.success(let success):
+                self.recipes = success.hits.map { $0.recipe }
+                self.performSegue(withIdentifier: "recipesListSegue", sender: self)
+                
+            // Maybe add a pop-up for the user?
+            case.failure(let failure):
+                print("Error occures:", failure)
+            }
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? RecipesList {
+            destinationVC.recipes = recipes
+        }
     }
 }

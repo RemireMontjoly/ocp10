@@ -15,6 +15,8 @@
 		C175160323A7F9060051AEDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C175160123A7F9060051AEDA /* LaunchScreen.storyboard */; };
 		C1781D8C23A9629A00092D52 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781D8B23A9629A00092D52 /* SearchScreen.swift */; };
 		C1781D8E23AA97AD00092D52 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781D8D23AA97AD00092D52 /* RecipeRepository.swift */; };
+		C1781D9623AD14EE00092D52 /* RecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781D9523AD14EE00092D52 /* RecipeViewCell.swift */; };
+		C1781D9A23AD305400092D52 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781D9923AD305400092D52 /* RecipesList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		C175160423A7F9060051AEDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1781D8B23A9629A00092D52 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		C1781D8D23AA97AD00092D52 /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
+		C1781D9523AD14EE00092D52 /* RecipeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewCell.swift; sourceTree = "<group>"; };
+		C1781D9923AD305400092D52 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				C1781D8B23A9629A00092D52 /* SearchScreen.swift */,
+				C1781D9923AD305400092D52 /* RecipesList.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -102,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				C17515FC23A7F9050051AEDA /* Main.storyboard */,
+				C1781D9523AD14EE00092D52 /* RecipeViewCell.swift */,
 				C175160123A7F9060051AEDA /* LaunchScreen.storyboard */,
 				C17515FF23A7F9060051AEDA /* Assets.xcassets */,
 			);
@@ -242,8 +248,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C17515F723A7F9050051AEDA /* AppDelegate.swift in Sources */,
+				C1781D9A23AD305400092D52 /* RecipesList.swift in Sources */,
 				C1781D8E23AA97AD00092D52 /* RecipeRepository.swift in Sources */,
 				C17515F923A7F9050051AEDA /* SceneDelegate.swift in Sources */,
+				C1781D9623AD14EE00092D52 /* RecipeViewCell.swift in Sources */,
 				C1781D8C23A9629A00092D52 /* SearchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

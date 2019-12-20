@@ -115,11 +115,81 @@
                     <connections>
                         <outlet property="ingredientListLabel" destination="5EI-S8-vRU" id="fY5-W6-APr"/>
                         <outlet property="ingredientTextField" destination="qg5-0y-CHZ" id="hRU-hn-t6H"/>
+                        <segue destination="y7M-8H-lXc" kind="show" identifier="recipesListSegue" id="RNX-v2-jZg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1896.8" y="125.4872563718141"/>
+        </scene>
+        <!--Recipes List-->
+        <scene sceneID="KbO-sn-dGv">
+            <objects>
+                <viewController id="y7M-8H-lXc" customClass="RecipesList" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zFW-pa-Cw5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HwE-IE-j64">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeViewCell" rowHeight="90" id="f0B-px-kSN" customClass="RecipeViewCell" customModule="Reciplease" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f0B-px-kSN" id="ScL-ep-Fa1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6ce-3t-jwz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nt0-fk-WNf">
+                                                    <rect key="frame" x="0.0" y="69" width="375" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6ce-3t-jwz" firstAttribute="leading" secondItem="ScL-ep-Fa1" secondAttribute="leading" id="83Y-In-mNv"/>
+                                                <constraint firstAttribute="trailing" secondItem="6ce-3t-jwz" secondAttribute="trailing" id="OfU-Wj-bpR"/>
+                                                <constraint firstAttribute="bottom" secondItem="Nt0-fk-WNf" secondAttribute="bottom" id="Ot0-LP-5no"/>
+                                                <constraint firstItem="Nt0-fk-WNf" firstAttribute="leading" secondItem="ScL-ep-Fa1" secondAttribute="leading" id="eU1-Hf-zSU"/>
+                                                <constraint firstItem="6ce-3t-jwz" firstAttribute="top" secondItem="ScL-ep-Fa1" secondAttribute="top" id="fRH-BH-dP0"/>
+                                                <constraint firstAttribute="bottom" secondItem="6ce-3t-jwz" secondAttribute="bottom" id="lO0-j3-gaj"/>
+                                                <constraint firstAttribute="trailing" secondItem="Nt0-fk-WNf" secondAttribute="trailing" id="q3G-DU-V1h"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="recipeImage" destination="6ce-3t-jwz" id="Beh-jq-uft"/>
+                                            <outlet property="recipeTitleLabel" destination="Nt0-fk-WNf" id="oYC-mP-gAL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="y7M-8H-lXc" id="bpi-g4-oEv"/>
+                                    <outlet property="delegate" destination="y7M-8H-lXc" id="0vN-jQ-HT5"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HwE-IE-j64" firstAttribute="leading" secondItem="A5O-DY-2gh" secondAttribute="leading" id="Jsb-kx-tpz"/>
+                            <constraint firstItem="HwE-IE-j64" firstAttribute="top" secondItem="A5O-DY-2gh" secondAttribute="top" id="OXi-Al-OfO"/>
+                            <constraint firstItem="HwE-IE-j64" firstAttribute="trailing" secondItem="A5O-DY-2gh" secondAttribute="trailing" id="Poc-4H-xQb"/>
+                            <constraint firstItem="HwE-IE-j64" firstAttribute="bottom" secondItem="A5O-DY-2gh" secondAttribute="bottom" id="cj2-Uk-eMF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A5O-DY-2gh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4Pf-Nz-Ehc"/>
+                    <connections>
+                        <outlet property="tableView" destination="HwE-IE-j64" id="LmO-RN-7ZT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lgw-Pi-ri6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2805.5999999999999" y="125.4872563718141"/>
         </scene>
         <!--Item-->
         <scene sceneID="D1f-t2-s5N">
@@ -153,7 +223,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VGM-7A-WhD">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="rYZ-bS-Mrm" kind="relationship" relationship="viewControllers" id="x2s-MS-eSw"/>
