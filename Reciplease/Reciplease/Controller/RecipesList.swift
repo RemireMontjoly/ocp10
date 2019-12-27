@@ -19,9 +19,14 @@ class RecipesList: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.reloadData()
-        print("Je suis bien dans le second VC", recipes)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? RecipeDetail {
+            guard let row = tableView.indexPathForSelectedRow?.row else { return }
+            destinationVC.recipe = recipes[row]
+        }
+    }
 }
 
 extension RecipesList: UITableViewDelegate, UITableViewDataSource {
@@ -31,7 +36,7 @@ extension RecipesList: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeViewCell") as! RecipeViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeViewCell") as? RecipeViewCell else { fatalError("Error occurs") }
         cell.configure(recipe: recipes[indexPath.row])
         return cell
     }

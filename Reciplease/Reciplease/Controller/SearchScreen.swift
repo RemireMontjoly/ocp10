@@ -12,7 +12,7 @@ import Alamofire
 class SearchScreen: UIViewController {
 
     private var recipes = [Recipe]()
-    //  private let repository = RecipeRepository()
+    private let repository = RecipeRepository()
     private var ingredientsArray = [String]()
 
     @IBOutlet weak var ingredientTextField: UITextField!
@@ -26,11 +26,10 @@ class SearchScreen: UIViewController {
     @IBAction func addButton(_ sender: UIButton) {
         if ingredientsArray.count == 0 {
             ingredientListLabel.text = "- \(ingredientTextField.text ?? "")"
-            clearTextField()
         } else {
             ingredientListLabel.text?.append("\n- \(ingredientTextField.text ?? "")")
-            clearTextField()
         }
+        clearTextField()
     }
 
     @IBAction func clearButton(_ sender: UIButton) {
@@ -51,10 +50,8 @@ class SearchScreen: UIViewController {
 
     func searchForRecipes(ingredient: String) {
 
-        let parameters: Parameters = ["app_id": app_id, "app_key": app_key, "q": ingredient]
-
-        AF.request("https://api.edamam.com/search?", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).responseDecodable(of: JsonObject.self) { response in
-            switch response.result {
+        repository.getRecipes(ingredient: ingredient) { result in
+            switch result {
 
             case.success(let success):
                 self.recipes = success.hits.map { $0.recipe }
