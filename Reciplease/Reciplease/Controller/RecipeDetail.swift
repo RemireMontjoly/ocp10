@@ -36,7 +36,19 @@ class RecipeDetail: UIViewController {
             }
         }
     }
-        //MARK: - Throw recipe to next VC
+
+    @IBAction func saveButton(_ sender: UIBarButtonItem) {
+        saveLabel(label: recipe.label)
+    }
+
+    private func saveLabel(label: String) {
+        let recipeLabel = RecipeFav(context: AppDelegate.viewContext)
+        recipeLabel.label = recipe.label
+       try? AppDelegate.viewContext.save()
+
+    }
+    
+    //MARK: - Throw recipe to next VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? RecipeDirections {
             destinationVC.recipeURLString = recipe.url

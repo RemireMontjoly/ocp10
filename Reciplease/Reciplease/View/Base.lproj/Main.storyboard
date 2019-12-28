@@ -122,7 +122,7 @@
             </objects>
             <point key="canvasLocation" x="1896.8" y="125.4872563718141"/>
         </scene>
-        <!--Recipes List-->
+        <!--Reciplease-->
         <scene sceneID="KbO-sn-dGv">
             <objects>
                 <viewController id="y7M-8H-lXc" customClass="RecipesList" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -183,7 +183,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="A5O-DY-2gh"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4Pf-Nz-Ehc"/>
+                    <navigationItem key="navigationItem" title="Reciplease" id="4Pf-Nz-Ehc"/>
                     <connections>
                         <outlet property="tableView" destination="HwE-IE-j64" id="LmO-RN-7ZT"/>
                     </connections>
@@ -192,7 +192,7 @@
             </objects>
             <point key="canvasLocation" x="2805.5999999999999" y="125.4872563718141"/>
         </scene>
-        <!--Recipe Detail-->
+        <!--Reciplease-->
         <scene sceneID="1yP-b9-Yak">
             <objects>
                 <viewController id="z2C-Jt-NVk" customClass="RecipeDetail" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -248,7 +248,7 @@
                                             <constraint firstAttribute="bottom" secondItem="AcH-Gq-U1k" secondAttribute="bottom" constant="196" id="7T2-Bt-8R5"/>
                                             <constraint firstAttribute="trailing" secondItem="VZZ-YY-hIV" secondAttribute="trailing" id="7XW-Ef-Mcf"/>
                                             <constraint firstAttribute="trailing" secondItem="Ajj-sT-0tc" secondAttribute="trailing" constant="8" id="858-Q5-jed"/>
-                                            <constraint firstItem="Ul2-Wg-nEQ" firstAttribute="firstBaseline" secondItem="VZZ-YY-hIV" secondAttribute="baseline" constant="24.5" symbolType="layoutAnchor" id="9eO-l5-YdE"/>
+                                            <constraint firstItem="Ul2-Wg-nEQ" firstAttribute="firstBaseline" secondItem="VZZ-YY-hIV" secondAttribute="baseline" constant="29.5" symbolType="layoutAnchor" id="9eO-l5-YdE"/>
                                             <constraint firstItem="VZZ-YY-hIV" firstAttribute="top" secondItem="A72-aM-iSm" secondAttribute="top" id="EZi-KL-3Si"/>
                                             <constraint firstItem="VZZ-YY-hIV" firstAttribute="leading" secondItem="A72-aM-iSm" secondAttribute="leading" id="Frs-Hy-NHR"/>
                                             <constraint firstItem="Ajj-sT-0tc" firstAttribute="bottom" secondItem="VZZ-YY-hIV" secondAttribute="bottom" id="Lhx-8W-3GK"/>
@@ -281,6 +281,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gUM-Vy-hrT"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Reciplease" id="pHw-59-PyT">
+                        <barButtonItem key="rightBarButtonItem" image="star.fill" catalog="system" id="UKY-i1-Ys0">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveButton:" destination="z2C-Jt-NVk" id="qNZ-F5-tUQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ingredientsLabel" destination="9B3-N8-nac" id="1KV-v7-fgx"/>
                         <outlet property="recipeNameLabel" destination="Ajj-sT-0tc" id="OJq-s6-ogJ"/>
@@ -291,7 +300,24 @@
             </objects>
             <point key="canvasLocation" x="3556" y="124.58770614692655"/>
         </scene>
-        <!--Recipe Directions-->
+        <!--Item-->
+        <scene sceneID="YQU-Qh-nMs">
+            <objects>
+                <viewController id="N6n-Gb-Bhi" customClass="FavoriteList" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zQZ-8b-60W">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="RPy-0Z-n4l"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="WN0-qN-s9Q"/>
+                    <navigationItem key="navigationItem" id="cyC-s9-lOP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DPh-BS-3bT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="893"/>
+        </scene>
+        <!--Reciplease-->
         <scene sceneID="H2y-P7-lB7">
             <objects>
                 <viewController id="pdN-I5-Cke" customClass="RecipeDirections" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -317,7 +343,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WRa-59-pQr"/>
                     </view>
-                    <navigationItem key="navigationItem" id="scg-U8-yQ7"/>
+                    <navigationItem key="navigationItem" title="Reciplease" id="scg-U8-yQ7"/>
                     <connections>
                         <outlet property="webView" destination="mWg-49-vnJ" id="XM2-ZI-8RG"/>
                     </connections>
@@ -362,6 +388,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="rYZ-bS-Mrm" kind="relationship" relationship="viewControllers" id="x2s-MS-eSw"/>
+                        <segue destination="N6n-Gb-Bhi" kind="relationship" relationship="viewControllers" id="UFM-1C-FHF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdi-aS-fR3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -369,4 +396,7 @@
             <point key="canvasLocation" x="138.40000000000001" y="126.38680659670166"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star.fill" catalog="system" width="64" height="58"/>
+    </resources>
 </document>
