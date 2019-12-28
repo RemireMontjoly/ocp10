@@ -150,18 +150,27 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjx-2I-tLq">
+                                                    <rect key="frame" x="303" y="11" width="57" height="45"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6ce-3t-jwz" firstAttribute="leading" secondItem="ScL-ep-Fa1" secondAttribute="leading" id="83Y-In-mNv"/>
                                                 <constraint firstAttribute="trailing" secondItem="6ce-3t-jwz" secondAttribute="trailing" id="OfU-Wj-bpR"/>
                                                 <constraint firstAttribute="bottom" secondItem="Nt0-fk-WNf" secondAttribute="bottom" id="Ot0-LP-5no"/>
+                                                <constraint firstItem="kjx-2I-tLq" firstAttribute="width" secondItem="ScL-ep-Fa1" secondAttribute="height" multiplier="19:30" id="Z4V-MH-DUN"/>
                                                 <constraint firstItem="Nt0-fk-WNf" firstAttribute="leading" secondItem="ScL-ep-Fa1" secondAttribute="leading" id="eU1-Hf-zSU"/>
                                                 <constraint firstItem="6ce-3t-jwz" firstAttribute="top" secondItem="ScL-ep-Fa1" secondAttribute="top" id="fRH-BH-dP0"/>
+                                                <constraint firstAttribute="bottom" secondItem="kjx-2I-tLq" secondAttribute="bottom" constant="34" id="jDI-nX-fAZ"/>
                                                 <constraint firstAttribute="bottom" secondItem="6ce-3t-jwz" secondAttribute="bottom" id="lO0-j3-gaj"/>
                                                 <constraint firstAttribute="trailing" secondItem="Nt0-fk-WNf" secondAttribute="trailing" id="q3G-DU-V1h"/>
+                                                <constraint firstItem="kjx-2I-tLq" firstAttribute="top" secondItem="ScL-ep-Fa1" secondAttribute="top" constant="11" id="swR-fN-Soc"/>
+                                                <constraint firstAttribute="trailing" secondItem="kjx-2I-tLq" secondAttribute="trailing" constant="15" id="yBw-PF-Crv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="customView" destination="kjx-2I-tLq" id="ayJ-yc-XlS"/>
                                             <outlet property="recipeImage" destination="6ce-3t-jwz" id="Beh-jq-uft"/>
                                             <outlet property="recipeTitleLabel" destination="Nt0-fk-WNf" id="oYC-mP-gAL"/>
                                             <segue destination="z2C-Jt-NVk" kind="show" id="JVQ-HV-PxU"/>
@@ -307,7 +316,7 @@
                     <view key="view" contentMode="scaleToFill" id="zQZ-8b-60W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="RPy-0Z-n4l"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="WN0-qN-s9Q"/>

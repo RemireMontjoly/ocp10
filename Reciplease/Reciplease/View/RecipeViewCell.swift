@@ -10,6 +10,7 @@ import UIKit
 
 class RecipeViewCell: UITableViewCell {
 
+    @IBOutlet weak var customView: UIView!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
 
@@ -27,6 +28,7 @@ class RecipeViewCell: UITableViewCell {
                 let data = try Data(contentsOf: imageUrl)
                 recipeImage.image = UIImage(data: data)
                 setGradientBackground()
+                setCustomView()
             } catch let err {
                 //Maybe a pop-up ?
                 print("Error: \(err.localizedDescription)")
@@ -34,6 +36,17 @@ class RecipeViewCell: UITableViewCell {
         }
     }
 
+    func setCustomView() {
+        if let subView = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)?.first as? CustomView {
+            // subView.clipsToBounds = true
+            subView.layer.cornerRadius = 5
+            customView.layer.cornerRadius = 5
+            customView.layer.borderWidth = 0.5
+            customView.layer.borderColor = CGColor(srgbRed: 255, green: 255, blue: 255, alpha: 1)
+            customView.addSubview(subView)
+        }
+    }
+    
     func setGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
