@@ -38,11 +38,10 @@ class RecipeViewCell: UITableViewCell {
 
     func setCustomView() {
         if let subView = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)?.first as? CustomView {
-            // subView.clipsToBounds = true
-            subView.layer.cornerRadius = 5
+            customView.clipsToBounds = true
             customView.layer.cornerRadius = 5
             customView.layer.borderWidth = 0.5
-            customView.layer.borderColor = CGColor(srgbRed: 255, green: 255, blue: 255, alpha: 1)
+            customView.layer.borderColor = UIColor.white.cgColor
             customView.addSubview(subView)
         }
     }

@@ -10,14 +10,20 @@ import UIKit
 
 class RecipeDetail: UIViewController {
 
+    @IBOutlet weak var buttonItem: UIBarButtonItem!
     @IBOutlet weak var recipeView: UIImageView!
     @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var ingredientsLabel: UILabel!
 
     var recipe: Recipe!
+    let favoriteRepository = FavoriteRepository()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
         //MARK: - Present ingredients list
         let ingredientsArray = recipe.ingredientLines.joined(separator: "\n - ")
         ingredientsLabel.text = ingredientsArray
@@ -38,16 +44,11 @@ class RecipeDetail: UIViewController {
     }
 
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
-        saveLabel(label: recipe.label)
+        buttonItem.tintColor = .green
+        // Add the recipe to favorite (CoreData)
+        favoriteRepository.saveRecipe(label: recipe.label, image: recipe.image, url: recipe.url)
     }
 
-    private func saveLabel(label: String) {
-        let recipeLabel = RecipeFav(context: AppDelegate.viewContext)
-        recipeLabel.label = recipe.label
-       try? AppDelegate.viewContext.save()
-
-    }
-    
     //MARK: - Throw recipe to next VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? RecipeDirections {
@@ -55,3 +56,4 @@ class RecipeDetail: UIViewController {
         }
     }
 }
+

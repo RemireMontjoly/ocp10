@@ -14,7 +14,5 @@ class CustomView: UIView {
     @IBOutlet weak var numberLiked: UILabel!
     @IBOutlet weak var timeCook: UILabel!
     
-
-
-
+    
 }

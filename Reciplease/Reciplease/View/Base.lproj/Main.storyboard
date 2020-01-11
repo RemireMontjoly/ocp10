@@ -300,6 +300,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="buttonItem" destination="UKY-i1-Ys0" id="GVE-bg-YKK"/>
                         <outlet property="ingredientsLabel" destination="9B3-N8-nac" id="1KV-v7-fgx"/>
                         <outlet property="recipeNameLabel" destination="Ajj-sT-0tc" id="OJq-s6-ogJ"/>
                         <outlet property="recipeView" destination="VZZ-YY-hIV" id="h10-s4-G0J"/>
@@ -316,15 +317,55 @@
                     <view key="view" contentMode="scaleToFill" id="zQZ-8b-60W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lel-a3-hG9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeFav" rowHeight="90" id="fXY-c0-Avw">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fXY-c0-Avw" id="Mob-vg-CiJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e10-Sb-57a">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="e10-Sb-57a" secondAttribute="trailing" id="Gcf-vr-yfy"/>
+                                                <constraint firstItem="e10-Sb-57a" firstAttribute="top" secondItem="Mob-vg-CiJ" secondAttribute="top" id="V3V-mG-J1A"/>
+                                                <constraint firstAttribute="bottom" secondItem="e10-Sb-57a" secondAttribute="bottom" id="nWc-e3-AHN"/>
+                                                <constraint firstItem="e10-Sb-57a" firstAttribute="leading" secondItem="Mob-vg-CiJ" secondAttribute="leading" id="u6h-tY-pve"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="N6n-Gb-Bhi" id="ehY-qe-gml"/>
+                                    <outlet property="delegate" destination="N6n-Gb-Bhi" id="LOb-vT-oPr"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lel-a3-hG9" firstAttribute="leading" secondItem="RPy-0Z-n4l" secondAttribute="leading" id="YWW-2U-PWG"/>
+                            <constraint firstItem="lel-a3-hG9" firstAttribute="trailing" secondItem="RPy-0Z-n4l" secondAttribute="trailing" id="hgn-NX-2Ik"/>
+                            <constraint firstItem="lel-a3-hG9" firstAttribute="top" secondItem="RPy-0Z-n4l" secondAttribute="top" id="uWc-GY-97t"/>
+                            <constraint firstAttribute="bottom" secondItem="lel-a3-hG9" secondAttribute="bottom" id="yWu-PZ-sTH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RPy-0Z-n4l"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="WN0-qN-s9Q"/>
                     <navigationItem key="navigationItem" id="cyC-s9-lOP"/>
+                    <connections>
+                        <outlet property="tableView" destination="lel-a3-hG9" id="Ve4-uD-YZg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPh-BS-3bT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="893"/>
+            <point key="canvasLocation" x="1077.5999999999999" y="892.80359820089961"/>
         </scene>
         <!--Reciplease-->
         <scene sceneID="H2y-P7-lB7">
@@ -365,7 +406,10 @@
         <scene sceneID="D1f-t2-s5N">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rYZ-bS-Mrm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="yqL-az-ivJ"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="yqL-az-ivJ">
+                        <inset key="landscapeImageInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cCh-N0-9OR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
