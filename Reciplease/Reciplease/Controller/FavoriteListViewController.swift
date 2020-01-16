@@ -10,18 +10,15 @@ import UIKit
 import CoreData
 
 class FavoriteList: UIViewController {
-    
-    
 
     @IBOutlet weak var tableView: UITableView!
     
-    //    let repoFav = FavoriteRepository()
-    //    var recipeFav = [RecipeFav]()
-    var recipeFav = RecipeFav.all
-    
+    let repoFav = FavoriteRepository()
+    var recipeFav = [RecipeFav]()
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        //  recipeFav = repoFav.getRecipeFav()
+        recipeFav = repoFav.getRecipeFav()
         tableView.reloadData()
     }
 }
@@ -29,7 +26,7 @@ class FavoriteList: UIViewController {
 extension FavoriteList: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return recipeFav.count
+        return recipeFav.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
