@@ -11,13 +11,13 @@ import Foundation
 
 class RecipesList: UIViewController {
 
-    var numberOfRow = 0
     var recipes = [Recipe]()
 
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         tableView.reloadData()
     }
 
@@ -35,9 +35,13 @@ extension RecipesList: UITableViewDelegate, UITableViewDataSource {
         return recipes.count
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         self.performSegue(withIdentifier: "toNextVC", sender: self)
+     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeViewCell") as? RecipeViewCell else { fatalError("Error occurs") }
-        cell.configure(recipe: recipes[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as? CustomCell else { fatalError("Error occurs") }
+        cell.configure(label: recipes[indexPath.row].label, image: recipes[indexPath.row].image)
         return cell
     }
 }

@@ -10,12 +10,7 @@ import Foundation
 import CoreData
 
 class RecipeFav: NSManagedObject {
-
-    static var all: [RecipeFav] {
-        let request: NSFetchRequest<RecipeFav> = RecipeFav.fetchRequest()
-        guard let recipeFav = try? AppDelegate.viewContext.fetch(request) else { return [] }
-        return recipeFav
-    }
+    //Managed by CoreData
 }
 
 class FavoriteRepository {
@@ -33,11 +28,11 @@ class FavoriteRepository {
         }
     }
 
-    //    func getRecipeFav() -> [RecipeFav] {
-    //        let request: NSFetchRequest<RecipeFav> = RecipeFav.fetchRequest()
-    //            guard let recipeFav = try? AppDelegate.viewContext.fetch(request) else { return [] }
-    //            return recipeFav
-    //    }
+        func getRecipeFav() -> [RecipeFav] {
+            let request: NSFetchRequest<RecipeFav> = RecipeFav.fetchRequest()
+                guard let recipeFav = try? AppDelegate.viewContext.fetch(request) else { return [] }
+                return recipeFav
+        }
 
     func delete(){
 

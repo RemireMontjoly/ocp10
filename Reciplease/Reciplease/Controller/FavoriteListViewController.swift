@@ -19,6 +19,8 @@ class FavoriteList: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         recipeFav = repoFav.getRecipeFav()
+        tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
+
         tableView.reloadData()
     }
 }
@@ -30,8 +32,10 @@ extension FavoriteList: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recipeFav", for: indexPath)
-        cell.textLabel?.text = recipeFav[indexPath.row].label
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? CustomCell else {
+            fatalError("Error occurs")
+        }
+        cell.configure(label: recipeFav[indexPath.row].label ?? "", image: recipeFav[indexPath.row].image ?? "")
 
         return cell
     }

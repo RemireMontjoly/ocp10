@@ -56,7 +56,6 @@ class SearchScreen: UIViewController {
             case.success(let success):
                 self.recipes = success.hits.map { $0.recipe }
                 self.performSegue(withIdentifier: "recipesListSegue", sender: self)
-                
             // Maybe add a pop-up for the user?
             case.failure(let failure):
                 print("Error occures:", failure)
