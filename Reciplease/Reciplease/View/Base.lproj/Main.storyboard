@@ -197,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgw-Pi-ri6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2805.5999999999999" y="125.4872563718141"/>
+            <point key="canvasLocation" x="2718" y="125"/>
         </scene>
         <!--Reciplease-->
         <scene sceneID="1yP-b9-Yak">
@@ -306,9 +306,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3B-Un-GPN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3556" y="124.58770614692655"/>
+            <point key="canvasLocation" x="3554" y="126"/>
         </scene>
-        <!--Item-->
+        <!--Favorite List-->
         <scene sceneID="YQU-Qh-nMs">
             <objects>
                 <viewController id="N6n-Gb-Bhi" customClass="FavoriteList" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -317,7 +317,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lel-a3-hG9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeFav" rowHeight="90" id="fXY-c0-Avw">
@@ -338,6 +338,9 @@
                                                 <constraint firstItem="e10-Sb-57a" firstAttribute="leading" secondItem="Mob-vg-CiJ" secondAttribute="leading" id="u6h-tY-pve"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="z2C-Jt-NVk" kind="show" identifier="fromFavToDetail" id="OnS-7L-bgf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -355,7 +358,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RPy-0Z-n4l"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="WN0-qN-s9Q"/>
                     <navigationItem key="navigationItem" id="cyC-s9-lOP"/>
                     <connections>
                         <outlet property="tableView" destination="lel-a3-hG9" id="Ve4-uD-YZg"/>
@@ -363,7 +365,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPh-BS-3bT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077.5999999999999" y="892.80359820089961"/>
+            <point key="canvasLocation" x="1897" y="893"/>
         </scene>
         <!--Reciplease-->
         <scene sceneID="H2y-P7-lB7">
@@ -439,15 +441,37 @@
                     </tabBar>
                     <connections>
                         <segue destination="rYZ-bS-Mrm" kind="relationship" relationship="viewControllers" id="x2s-MS-eSw"/>
-                        <segue destination="N6n-Gb-Bhi" kind="relationship" relationship="viewControllers" id="UFM-1C-FHF"/>
+                        <segue destination="0A5-Xm-ZDC" kind="relationship" relationship="viewControllers" id="UFM-1C-FHF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdi-aS-fR3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138.40000000000001" y="126.38680659670166"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="Lgk-OM-T88">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0A5-Xm-ZDC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="WN0-qN-s9Q"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tx5-Uw-28d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="N6n-Gb-Bhi" kind="relationship" relationship="rootViewController" id="cmF-OK-Xlc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lsr-hy-Lxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1077.5999999999999" y="892.80359820089961"/>
+        </scene>
     </scenes>
     <resources>
         <image name="star.fill" catalog="system" width="64" height="58"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="OnS-7L-bgf"/>
+    </inferredMetricsTieBreakers>
 </document>

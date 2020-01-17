@@ -28,14 +28,20 @@ class FavoriteRepository {
         }
     }
 
-        func getRecipeFav() -> [RecipeFav] {
-            let request: NSFetchRequest<RecipeFav> = RecipeFav.fetchRequest()
-                guard let recipeFav = try? AppDelegate.viewContext.fetch(request) else { return [] }
-                return recipeFav
+    func getRecipeFav() -> [RecipeFav] {
+
+        let request: NSFetchRequest<RecipeFav> = RecipeFav.fetchRequest()
+        guard let recipeFav = try? AppDelegate.viewContext.fetch(request) else { return [] }
+        return recipeFav
+    }
+    
+    func delete(object: NSManagedObject) {
+        AppDelegate.viewContext.delete(object)
+        do {
+            try AppDelegate.viewContext.save()
+        } catch {
+            print("Error fetching data from context \(error)")
         }
-
-    func delete(){
-
     }
 }
 

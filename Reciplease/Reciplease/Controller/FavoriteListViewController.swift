@@ -15,17 +15,39 @@ class FavoriteList: UIViewController {
     
     let repoFav = FavoriteRepository()
     var recipeFav = [RecipeFav]()
+    var row = Int()
+
+    //Test
+    var recipe = Recipe(label: "", image: "", url: "", ingredientLines: [""])
+    //
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         recipeFav = repoFav.getRecipeFav()
         tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
-
         tableView.reloadData()
+    }
+//Test
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? RecipeDetail {
+            destinationVC.recipe = recipe
+            destinationVC.buttonItem.tintColor = .green
+            destinationVC.recipeFav = recipeFav
+            destinationVC.row = row
+        }
     }
 }
 
 extension FavoriteList: UITableViewDelegate, UITableViewDataSource {
+//Test
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        recipe.image = recipeFav[indexPath.row].image ?? ""
+        recipe.label = recipeFav[indexPath.row].label ?? ""
+        recipe.url = recipeFav[indexPath.row].url ?? ""
+        row = indexPath.row
+
+        self.performSegue(withIdentifier: "fromFavToDetail", sender: self)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeFav.count

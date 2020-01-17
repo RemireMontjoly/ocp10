@@ -17,12 +17,13 @@ class RecipeDetail: UIViewController {
 
     var recipe: Recipe!
     let favoriteRepository = FavoriteRepository()
-    
+    var recipeFav = [RecipeFav]()
+    var row = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       // print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+       
+        // print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         //MARK: - Present ingredients list
         let ingredientsArray = recipe.ingredientLines.joined(separator: "\n - ")
@@ -44,9 +45,16 @@ class RecipeDetail: UIViewController {
     }
 
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
-        buttonItem.tintColor = .green
-        // Add the recipe to favorite (CoreData)
-        favoriteRepository.saveRecipe(label: recipe.label, image: recipe.image, url: recipe.url)
+        if buttonItem.tintColor == .white {
+            buttonItem.tintColor = .green
+            // Add the recipe to favorite (CoreData)
+            favoriteRepository.saveRecipe(label: recipe.label, image: recipe.image, url: recipe.url)
+        } else {
+            buttonItem.tintColor = .white
+            favoriteRepository.delete(object: recipeFav[row])
+            
+            print("Call func to delete")
+        }
     }
 
     //MARK: - Throw recipe to next VC

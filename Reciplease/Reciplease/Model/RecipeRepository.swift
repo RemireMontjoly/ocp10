@@ -19,11 +19,12 @@ struct JsonObject: Decodable {
 struct Hit: Decodable {
     let recipe: Recipe
 }
+//Test passing var instead of let
 struct Recipe: Decodable {
-    let label: String
-    let image: String
-    let url: String
-    let ingredientLines: [String]
+    var label: String
+    var image: String
+    var url: String
+    var ingredientLines: [String]
     // let yield: Int
     // let totalTime: Int
 }
