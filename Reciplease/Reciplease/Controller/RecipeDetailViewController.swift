@@ -17,9 +17,7 @@ class RecipeDetail: UIViewController {
 
     var recipe: Recipe!
     let favoriteRepository = FavoriteRepository()
-    var recipeFav = [RecipeFav]()
-    var row = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -48,10 +46,10 @@ class RecipeDetail: UIViewController {
         if buttonItem.tintColor == .white {
             buttonItem.tintColor = .green
             // Add the recipe to favorite (CoreData)
-            favoriteRepository.saveRecipe(label: recipe.label, image: recipe.image, url: recipe.url)
+            favoriteRepository.saveRecipe(label: recipe.label, image: recipe.image, url: recipe.url, ingredients: recipe.ingredientLines)
         } else {
             buttonItem.tintColor = .white
-            favoriteRepository.delete(object: recipeFav[row])
+          //  favoriteRepository.delete(object: recipeFav[row])
             
             print("Call func to delete")
         }

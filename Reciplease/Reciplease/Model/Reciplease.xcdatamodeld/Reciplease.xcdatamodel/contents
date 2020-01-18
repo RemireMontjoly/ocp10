@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class"/>
     <entity name="RecipeFav" representedClassName=".RecipeFav" syncable="YES" codeGenerationType="category">
-        <attribute name="image" optional="YES" attributeType="String"/>
-        <attribute name="label" optional="YES" attributeType="String"/>
-        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="image" attributeType="String"/>
+        <attribute name="ingredients" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="label" attributeType="String"/>
+        <attribute name="url" attributeType="String"/>
     </entity>
     <elements>
-        <element name="RecipeFav" positionX="-36" positionY="9" width="128" height="88"/>
+        <element name="RecipeFav" positionX="-36" positionY="9" width="128" height="103"/>
+        <element name="Entity" positionX="-36" positionY="45" width="128" height="28"/>
     </elements>
 </model>

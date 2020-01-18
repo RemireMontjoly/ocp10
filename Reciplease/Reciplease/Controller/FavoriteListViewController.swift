@@ -32,8 +32,8 @@ class FavoriteList: UIViewController {
         if let destinationVC = segue.destination as? RecipeDetail {
             destinationVC.recipe = recipe
             destinationVC.buttonItem.tintColor = .green
-            destinationVC.recipeFav = recipeFav
-            destinationVC.row = row
+            
+            
         }
     }
 }
@@ -44,7 +44,7 @@ extension FavoriteList: UITableViewDelegate, UITableViewDataSource {
         recipe.image = recipeFav[indexPath.row].image ?? ""
         recipe.label = recipeFav[indexPath.row].label ?? ""
         recipe.url = recipeFav[indexPath.row].url ?? ""
-        row = indexPath.row
+        recipe.ingredientLines = recipeFav[indexPath.row].ingredients ?? []//.map{String($0)} ?? []
 
         self.performSegue(withIdentifier: "fromFavToDetail", sender: self)
     }

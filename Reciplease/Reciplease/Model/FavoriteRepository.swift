@@ -15,12 +15,13 @@ class RecipeFav: NSManagedObject {
 
 class FavoriteRepository {
 
-    func saveRecipe(label: String, image: String, url: String) {
+    func saveRecipe(label: String, image: String, url: String, ingredients: [String]) {
 
         let recipe = RecipeFav(context: AppDelegate.viewContext)
         recipe.label = label
         recipe.image = image
         recipe.url = url
+        recipe.ingredients = ingredients   //.map{(NSString(string: $0) as String)}
         do {
             try AppDelegate.viewContext.save()
         } catch {
