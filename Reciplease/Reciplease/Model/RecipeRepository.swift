@@ -9,6 +9,9 @@
 import Foundation
 import Alamofire
 
+let appId = app_id
+let appKey = app_key
+
 struct JsonObject: Decodable {
     let hits: [Hit]
 }
@@ -29,7 +32,7 @@ class RecipeRepository {
 
        func getRecipes(ingredient: String, completion: @escaping (Result<JsonObject, AFError>) -> ()) {
 
-        let parameters: Parameters = ["app_id": app_id, "app_key": app_key, "q": ingredient]
+        let parameters: Parameters = ["app_id": appId, "app_key": appKey, "q": ingredient]
 
          AF.request("https://api.edamam.com/search?", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).responseDecodable(of: JsonObject.self) { response in
             completion(response.result)
