@@ -20,14 +20,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6K-hz-vKD">
-                        <rect key="frame" x="0.0" y="69" width="375" height="21"/>
+                        <rect key="frame" x="0.0" y="69.5" width="375" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROr-OL-4Nu">
                         <rect key="frame" x="303" y="11" width="57" height="45"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="HPm-g5-z3h">
+                                <rect key="frame" x="34" y="2" width="21" height="41"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="hand.thumbsup" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9NI-Ub-YJH">
+                                        <rect key="frame" x="0.0" y="-1" width="21" height="21"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zlZ-I8-MWU">
+                                        <rect key="frame" x="0.0" y="21.5" width="21" height="19"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HPm-g5-z3h" secondAttribute="height" multiplier="21:41" id="iyX-Th-Lt1"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="h7r-8T-PwG">
+                                <rect key="frame" x="2" y="8" width="32" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="245" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LY9-U4-NPb">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="11"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="pa1-vv-6h6">
+                                        <rect key="frame" x="0.0" y="19" width="32" height="11"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="h7r-8T-PwG" secondAttribute="height" multiplier="16:15" id="MXR-Xj-sm0"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HPm-g5-z3h" firstAttribute="top" secondItem="ROr-OL-4Nu" secondAttribute="top" constant="2" id="GEe-cf-6ij"/>
+                            <constraint firstAttribute="trailing" secondItem="HPm-g5-z3h" secondAttribute="trailing" constant="2" id="LRZ-pq-2Wc"/>
+                            <constraint firstAttribute="bottom" secondItem="HPm-g5-z3h" secondAttribute="bottom" constant="2" id="TER-Bg-GOc"/>
+                            <constraint firstItem="h7r-8T-PwG" firstAttribute="leading" secondItem="ROr-OL-4Nu" secondAttribute="leading" constant="2" id="UjH-1v-gc0"/>
+                            <constraint firstItem="h7r-8T-PwG" firstAttribute="top" secondItem="ROr-OL-4Nu" secondAttribute="top" constant="8" id="b5Q-7p-I2h"/>
+                            <constraint firstAttribute="bottom" secondItem="h7r-8T-PwG" secondAttribute="bottom" constant="7" id="bQu-Yg-dLB"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -48,9 +94,15 @@
             <connections>
                 <outlet property="cellRecipeImage" destination="0uA-HW-hvc" id="0Lx-Am-AVu"/>
                 <outlet property="cellRecipeLabel" destination="A6K-hz-vKD" id="eYJ-wP-3la"/>
+                <outlet property="cookTime" destination="pa1-vv-6h6" id="khe-cs-ols"/>
                 <outlet property="customView" destination="ROr-OL-4Nu" id="2zg-hQ-r5n"/>
+                <outlet property="ratesLabel" destination="LY9-U4-NPb" id="gOk-Hh-3E9"/>
             </connections>
-            <point key="canvasLocation" x="138.40579710144928" y="141.29464285714286"/>
+            <point key="canvasLocation" x="138.40000000000001" y="141.22938530734635"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="clock" catalog="system" width="64" height="60"/>
+        <image name="hand.thumbsup" catalog="system" width="64" height="64"/>
+    </resources>
 </document>

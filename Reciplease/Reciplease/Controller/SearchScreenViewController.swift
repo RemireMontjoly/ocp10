@@ -15,8 +15,8 @@ class SearchScreen: UIViewController {
     private let repository = RecipeRepository()
     private var ingredientsArray = [String]()
 
-    @IBOutlet weak var ingredientTextField: UITextField!
-    @IBOutlet weak var ingredientListLabel: UILabel!
+    @IBOutlet weak private var ingredientTextField: UITextField!
+    @IBOutlet weak private var ingredientListLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()

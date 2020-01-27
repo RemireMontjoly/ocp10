@@ -14,50 +14,48 @@ class FavoriteList: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let repoFav = FavoriteRepository()
-    var recipeFav = [RecipeFav]()
-    var row = Int()
-
-    //Test
-    var recipe = Recipe(label: "", image: "", url: "", ingredientLines: [""])
-    //
+    private var rcpArray = [Recipe]()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        recipeFav = repoFav.getRecipeFav()
+        rcpArray = repoFav.getRecipeFav()
         tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         tableView.reloadData()
+        if rcpArray.count == 0 {
+            emptyFavoriteList()
+        }
     }
-//Test
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? RecipeDetail {
-            destinationVC.recipe = recipe
+            guard let row = tableView.indexPathForSelectedRow?.row else { return }
             destinationVC.buttonItem.tintColor = .green
-            
-            
+            destinationVC.recipe = rcpArray[row]
         }
+    }
+
+    private func emptyFavoriteList() {
+        let alert = UIAlertController(title: "No favorite recipe yet!", message: "To add a favorite, just tap on the star.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
 
 extension FavoriteList: UITableViewDelegate, UITableViewDataSource {
-//Test
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        recipe.image = recipeFav[indexPath.row].image ?? ""
-        recipe.label = recipeFav[indexPath.row].label ?? ""
-        recipe.url = recipeFav[indexPath.row].url ?? ""
-        recipe.ingredientLines = recipeFav[indexPath.row].ingredients ?? []//.map{String($0)} ?? []
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "fromFavToDetail", sender: self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipeFav.count
+        return rcpArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? CustomCell else {
-            fatalError("Error occurs")
+            fatalError("Can't create CustomCell")
         }
-        cell.configure(label: recipeFav[indexPath.row].label ?? "", image: recipeFav[indexPath.row].image ?? "")
+        cell.configure(recipe: rcpArray[indexPath.row])
 
         return cell
     }

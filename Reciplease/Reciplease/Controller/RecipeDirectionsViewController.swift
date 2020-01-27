@@ -11,7 +11,7 @@ import WebKit
 
 class RecipeDirections: UIViewController {
 
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak private var webView: WKWebView!
     var recipeURLString = ""
 
     override func viewDidLoad() {

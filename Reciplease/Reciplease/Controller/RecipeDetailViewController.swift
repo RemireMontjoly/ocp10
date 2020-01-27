@@ -11,16 +11,16 @@ import UIKit
 class RecipeDetail: UIViewController {
 
     @IBOutlet weak var buttonItem: UIBarButtonItem!
-    @IBOutlet weak var recipeView: UIImageView!
-    @IBOutlet weak var recipeNameLabel: UILabel!
-    @IBOutlet weak var ingredientsLabel: UILabel!
+    @IBOutlet weak private var recipeView: UIImageView!
+    @IBOutlet weak private var recipeNameLabel: UILabel!
+    @IBOutlet weak private var ingredientsLabel: UILabel!
 
     var recipe: Recipe!
-    let favoriteRepository = FavoriteRepository()
+    private let favoriteRepository = FavoriteRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
         // print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         //MARK: - Present ingredients list
@@ -42,16 +42,15 @@ class RecipeDetail: UIViewController {
         }
     }
 
-    @IBAction func saveButton(_ sender: UIBarButtonItem) {
+    @IBAction private func saveOrDelete(_ sender: UIBarButtonItem) {
         if buttonItem.tintColor == .white {
             buttonItem.tintColor = .green
             // Add the recipe to favorite (CoreData)
-            favoriteRepository.saveRecipe(label: recipe.label, image: recipe.image, url: recipe.url, ingredients: recipe.ingredientLines)
+            favoriteRepository.saveRecipe(recipeFav: recipe)
         } else {
             buttonItem.tintColor = .white
-          //  favoriteRepository.delete(object: recipeFav[row])
-            
-            print("Call func to delete")
+            // Delete the recipe from Core Data
+            favoriteRepository.delete(object: recipe)
         }
     }
 
