@@ -9,10 +9,6 @@
 import Foundation
 import Alamofire
 
-//To put in gitignore File
-let app_id = "affe061e"
-let app_key = "23d0bc574cb76dbbef2f0dae27266921"
-
 struct JsonObject: Decodable {
     let hits: [Hit]
 }
