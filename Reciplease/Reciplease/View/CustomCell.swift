@@ -23,6 +23,8 @@ class CustomCell: UITableViewCell {
     }
 
     func configure(recipe: Recipe) {
+        ratesLabel.text = String(recipe.yield)
+        cookTime.text = String(recipe.totalTime)
         cellRecipeLabel.text = recipe.label
         let urlString = recipe.image
         if let imageUrl = URL(string: urlString) {
@@ -37,7 +39,7 @@ class CustomCell: UITableViewCell {
         }
     }
 
-    func setGradientBackground() {
+    private func setGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.colors = [UIColor.clear, UIColor.black.cgColor]
@@ -45,7 +47,7 @@ class CustomCell: UITableViewCell {
         cellRecipeImage.layer.insertSublayer(gradientLayer, at: 0)
     }
 
-    func setRateAndTime() {
+    private func setRateAndTime() {
         customView.layer.cornerRadius = 5
         customView.layer.borderWidth = 0.5
         customView.layer.borderColor = UIColor.white.cgColor

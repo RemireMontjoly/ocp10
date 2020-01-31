@@ -20,17 +20,15 @@ class RecipeDetail: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-        //MARK: - Present ingredients list
+        // Present ingredients list
         let ingredientsArray = recipe.ingredientLines.joined(separator: "\n - ")
         ingredientsLabel.text = ingredientsArray
 
-        //MARK: - Present recipe name
+        // Present recipe name
         recipeNameLabel.text = recipe.label
 
-        //MARK: - Present recipe image
+        // Present recipe image
         let urlString = recipe.image
         if let url = URL(string: urlString) {
             do {
@@ -54,7 +52,7 @@ class RecipeDetail: UIViewController {
         }
     }
 
-    //MARK: - Throw recipe to next VC
+    // Throw recipe to next VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? RecipeDirections {
             destinationVC.recipeURLString = recipe.url

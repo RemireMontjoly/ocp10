@@ -17,6 +17,9 @@ class FavoriteRepository {
 
     func saveRecipe(recipeFav: Recipe) {
 
+//        guard let insert = NSEntityDescription.insertNewObject(forEntityName: "RecipeFav", into: AppDelegate.viewContext) as? RecipeFav else { return }
+//        insert.image = recipeFav.image
+
         let recipe = RecipeFav(context: AppDelegate.viewContext)
         recipe.image = recipeFav.image
         recipe.ingredients = recipeFav.ingredientLines

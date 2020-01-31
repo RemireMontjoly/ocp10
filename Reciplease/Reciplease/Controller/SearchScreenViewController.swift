@@ -12,9 +12,11 @@ import Alamofire
 class SearchScreen: UIViewController {
 
     private var recipes = [Recipe]()
-    private let repository = RecipeRepository()
+    private let repository = RecipeRepository.shared
     private var ingredientsArray = [String]()
 
+    @IBOutlet weak private var searchButton: UIButton!
+    @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak private var ingredientTextField: UITextField!
     @IBOutlet weak private var ingredientListLabel: UILabel!
 
@@ -23,7 +25,7 @@ class SearchScreen: UIViewController {
 
     }
 
-    @IBAction func addButton(_ sender: UIButton) {
+    @IBAction private func addButton(_ sender: UIButton) {
         if ingredientsArray.count == 0 {
             ingredientListLabel.text = "- \(ingredientTextField.text ?? "")"
         } else {
@@ -32,27 +34,27 @@ class SearchScreen: UIViewController {
         clearTextField()
     }
 
-    @IBAction func clearButton(_ sender: UIButton) {
+    @IBAction private func clearButton(_ sender: UIButton) {
         ingredientsArray.removeAll()
         ingredientListLabel.text = nil
     }
 
-    @IBAction func searchButton(_ sender: UIButton) {
+    @IBAction private func searchButton(_ sender: UIButton) {
         let ingredients = ingredientsArray.joined(separator: ",")
         searchForRecipes(ingredient: ingredients)
     }
 
-    func clearTextField() {
+    private func clearTextField() {
         ingredientsArray.append(ingredientTextField.text ?? "")
         ingredientTextField.text = nil
         view.endEditing(true)
     }
 
-    func searchForRecipes(ingredient: String) {
-
+    private func searchForRecipes(ingredient: String) {
+        toggleActivityIndicator(shown: true)
         repository.getRecipes(ingredient: ingredient) { result in
+            self.toggleActivityIndicator(shown: false)
             switch result {
-
             case.success(let success):
                 self.recipes = success.hits.map { $0.recipe }
                 self.performSegue(withIdentifier: "recipesListSegue", sender: self)
@@ -61,6 +63,11 @@ class SearchScreen: UIViewController {
                 print("Error occures:", failure)
             }
         }
+    }
+    
+    private func toggleActivityIndicator(shown: Bool) {
+        activityIndicator.isHidden = !shown
+        searchButton.isHidden = shown
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

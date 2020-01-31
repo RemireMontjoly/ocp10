@@ -30,11 +30,18 @@ struct Recipe: Decodable {
 }
 
 class RecipeRepository {
-
+    static var shared = RecipeRepository()
+    private init(){}
     func getRecipes(ingredient: String, completion: @escaping (Result<JsonObject, AFError>) -> ()) {
-
+        
         let parameters: Parameters = ["app_id": appId, "app_key": appKey, "q": ingredient]
 
+        //Cancel a eventual task, in order to avoid multiple calls
+        let sessionManager = Alamofire.Session.default
+        sessionManager.session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) in
+            dataTasks.forEach { $0.cancel()}
+        }
+        
         AF.request("https://api.edamam.com/search?", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil, interceptor: nil).responseDecodable(of: JsonObject.self) { response in
             completion(response.result)
         }
