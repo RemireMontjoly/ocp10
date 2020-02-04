@@ -7,6 +7,9 @@
 //
 
 import XCTest
+import CoreData
+@testable import Reciplease
+
 
 class RecipeRepository: XCTestCase {
 

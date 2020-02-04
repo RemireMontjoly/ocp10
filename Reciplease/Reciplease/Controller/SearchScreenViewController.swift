@@ -9,11 +9,11 @@
 import UIKit
 import Alamofire
 
-class SearchScreen: UIViewController {
+class SearchScreen: UIViewController, UITextFieldDelegate {
 
     private var recipes = [Recipe]()
-    private let repository = RecipeRepository.shared
     private var ingredientsArray = [String]()
+    private let recipeRepository = RecipeRepository()
 
     @IBOutlet weak private var searchButton: UIButton!
     @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
@@ -22,10 +22,13 @@ class SearchScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ingredientTextField.delegate = self
     }
 
     @IBAction private func addButton(_ sender: UIButton) {
+        guard ingredientTextField.text?.isEmpty == false else {
+            return
+        }
         if ingredientsArray.count == 0 {
             ingredientListLabel.text = "- \(ingredientTextField.text ?? "")"
         } else {
@@ -33,14 +36,24 @@ class SearchScreen: UIViewController {
         }
         clearTextField()
     }
-
+    //            if ingredientTextField.text?.isEmpty ?? true {
+    //                return
+    //            } else {
+    //                if ingredientsArray.count == 0 {
+    //                    ingredientListLabel.text = "- \(ingredientTextField.text ?? "")"
+    //                } else {
+    //                    ingredientListLabel.text?.append("\n- \(ingredientTextField.text ?? "")")
+    //                }
+    //                clearTextField()
+    //            }
+    //    }
     @IBAction private func clearButton(_ sender: UIButton) {
         ingredientsArray.removeAll()
         ingredientListLabel.text = nil
     }
 
     @IBAction private func searchButton(_ sender: UIButton) {
-        let ingredients = ingredientsArray.joined(separator: ",")
+        let ingredients = ingredientsArray.joined(separator: "&")
         searchForRecipes(ingredient: ingredients)
     }
 
@@ -50,19 +63,34 @@ class SearchScreen: UIViewController {
         view.endEditing(true)
     }
 
+    private func noRecipePopUp() {
+        let alert = UIAlertController(title: "No recipe!", message: "Please enter ingredient.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+
     private func searchForRecipes(ingredient: String) {
+
         toggleActivityIndicator(shown: true)
-        repository.getRecipes(ingredient: ingredient) { result in
+        recipeRepository.getRecipes(ingredient: ingredient) { result in
             self.toggleActivityIndicator(shown: false)
             switch result {
             case.success(let success):
                 self.recipes = success.hits.map { $0.recipe }
-                self.performSegue(withIdentifier: "recipesListSegue", sender: self)
-            // Maybe add a pop-up for the user?
+                if self.recipes.isEmpty {
+                    self.noRecipePopUp()
+                } else {
+                    self.performSegue(withIdentifier: "recipesListSegue", sender: self)
+                }
             case.failure(let failure):
+                self.noRecipePopUp()
                 print("Error occures:", failure)
             }
         }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
     }
     
     private func toggleActivityIndicator(shown: Bool) {

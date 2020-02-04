@@ -41,7 +41,6 @@ class FavoriteRepository {
         var recipeArray = [Recipe]()
         do {
             let recipeFav = try AppDelegate.viewContext.fetch(request)
-
             for i in recipeFav {
                 recipe.image = i.image ?? ""
                 recipe.ingredientLines = i.ingredients ?? []

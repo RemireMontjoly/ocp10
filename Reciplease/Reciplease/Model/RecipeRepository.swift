@@ -30,8 +30,7 @@ struct Recipe: Decodable {
 }
 
 class RecipeRepository {
-    static var shared = RecipeRepository()
-    private init(){}
+
     func getRecipes(ingredient: String, completion: @escaping (Result<JsonObject, AFError>) -> ()) {
         
         let parameters: Parameters = ["app_id": appId, "app_key": appKey, "q": ingredient]
