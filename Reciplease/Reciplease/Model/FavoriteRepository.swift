@@ -8,17 +8,32 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class RecipeFav: NSManagedObject {
-    //Managed by CoreData
+    //Attributes managed by CoreData -> codegen = extension
 }
 
 class FavoriteRepository {
 
-    func saveRecipe(recipeFav: Recipe) {
+    let persistentContainer: NSPersistentContainer
 
-//        guard let insert = NSEntityDescription.insertNewObject(forEntityName: "RecipeFav", into: AppDelegate.viewContext) as? RecipeFav else { return }
-//        insert.image = recipeFav.image
+    //MARK: Init with dependency
+    init(container: NSPersistentContainer) {
+        self.persistentContainer = container
+        //self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true?????????
+    }
+
+    //MARK: Init with the default container for production environment
+    convenience init () {
+        self.init(container: AppDelegate.persistentContainer)
+    }
+
+    //MARK: CRUD
+    func saveRecipe(recipeFav: Recipe) {
+        // Old way to create an Entity:
+        //        guard let insert = NSEntityDescription.insertNewObject(forEntityName: "RecipeFav", into: AppDelegate.viewContext) as? RecipeFav else { return }
+        //        insert.image = recipeFav.image
 
         let recipe = RecipeFav(context: AppDelegate.viewContext)
         recipe.image = recipeFav.image
@@ -27,11 +42,12 @@ class FavoriteRepository {
         recipe.url = recipeFav.url
         recipe.totalTime = recipeFav.totalTime
         recipe.yield = recipeFav.yield
-        do {
-            try AppDelegate.viewContext.save()
-        } catch let error {
-            print("Error while saving: \(error)")
-        }
+        save()
+        //        do {
+        //            try AppDelegate.viewContext.save()
+        //        } catch let error {
+        //            print("Error while saving: \(error)")
+        //        }
     }
 
     func getRecipeFav() -> [Recipe] {
@@ -63,13 +79,18 @@ class FavoriteRepository {
         for i in recipeFav {
             if i.image == object.image && i.ingredients == object.ingredientLines && i.label == object.label && i.url == object.url {
                 AppDelegate.viewContext.delete(i)
-                do {
-                    try AppDelegate.viewContext.save()
-                } catch let error {
-                    print("Error deleting data from context \(error)")
-                }
+                save()
+                //                do {
+                //                    try AppDelegate.viewContext.save()
+                //                } catch let error {
+                //                    print("Error deleting data from context \(error)")
+                //                }
             }
         }
+    }
+
+    func save() {
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
 }
 
