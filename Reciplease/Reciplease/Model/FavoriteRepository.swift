@@ -10,10 +10,6 @@ import Foundation
 import CoreData
 import UIKit
 
-class RecipeFav: NSManagedObject {
-    //Attributes managed by CoreData -> codegen = extension
-}
-
 class FavoriteRepository {
 
     let persistentContainer: NSPersistentContainer
@@ -21,7 +17,6 @@ class FavoriteRepository {
     //MARK: Init with dependency
     init(container: NSPersistentContainer) {
         self.persistentContainer = container
-        //self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true?????????
     }
 
     //MARK: Init with the default container for production environment
@@ -30,12 +25,9 @@ class FavoriteRepository {
     }
 
     //MARK: CRUD
-    func saveRecipe(recipeFav: Recipe) {
-        // Old way to create an Entity:
-        //        guard let insert = NSEntityDescription.insertNewObject(forEntityName: "RecipeFav", into: AppDelegate.viewContext) as? RecipeFav else { return }
-        //        insert.image = recipeFav.image
+    func addRecipeToFav(recipeFav: Recipe) {
 
-        let recipe = RecipeFav(context: AppDelegate.viewContext)
+        let recipe = RecipeFav(context: persistentContainer.viewContext)
         recipe.image = recipeFav.image
         recipe.ingredients = recipeFav.ingredientLines
         recipe.label = recipeFav.label
@@ -43,11 +35,7 @@ class FavoriteRepository {
         recipe.totalTime = recipeFav.totalTime
         recipe.yield = recipeFav.yield
         save()
-        //        do {
-        //            try AppDelegate.viewContext.save()
-        //        } catch let error {
-        //            print("Error while saving: \(error)")
-        //        }
+
     }
 
     func getRecipeFav() -> [Recipe] {
@@ -56,12 +44,12 @@ class FavoriteRepository {
         var recipe = Recipe(label: "", image: "", url: "", ingredientLines: [""], yield: 0, totalTime: 0)
         var recipeArray = [Recipe]()
         do {
-            let recipeFav = try AppDelegate.viewContext.fetch(request)
+            let recipeFav = try persistentContainer.viewContext.fetch(request)
             for i in recipeFav {
-                recipe.image = i.image ?? ""
-                recipe.ingredientLines = i.ingredients ?? []
-                recipe.label = i.label ?? ""
-                recipe.url = i.url ?? ""
+                recipe.image = i.image// ?? ""
+                recipe.ingredientLines = i.ingredients// ?? []
+                recipe.label = i.label// ?? ""
+                recipe.url = i.url// ?? ""
                 recipe.yield = i.yield
                 recipe.totalTime = i.totalTime
                 recipeArray.append(recipe)
@@ -74,24 +62,31 @@ class FavoriteRepository {
     
     func delete(object: Recipe) {
         let request: NSFetchRequest<RecipeFav> = RecipeFav.fetchRequest()
-        let recipeFav = try! AppDelegate.viewContext.fetch(request)
+        let recipeFav = try! persistentContainer.viewContext.fetch(request)
 
         for i in recipeFav {
             if i.image == object.image && i.ingredients == object.ingredientLines && i.label == object.label && i.url == object.url {
-                AppDelegate.viewContext.delete(i)
+                persistentContainer.viewContext.delete(i)
                 save()
-                //                do {
-                //                    try AppDelegate.viewContext.save()
-                //                } catch let error {
-                //                    print("Error deleting data from context \(error)")
-                //                }
             }
         }
     }
 
     func save() {
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
+
+//    func save() {
+//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+//    }
 }
 
 

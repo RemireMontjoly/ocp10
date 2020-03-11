@@ -1,17 +1,14 @@
 //
-//  RecipeRepository.swift
+//  RecipeRepositoryTestCase.swift
 //  RecipleaseTests
 //
-//  Created by pith on 31/01/2020.
+//  Created by pith on 11/03/2020.
 //  Copyright © 2020 dino. All rights reserved.
 //
 
 import XCTest
-import CoreData
-@testable import Reciplease
 
-
-class RecipeRepository: XCTestCase {
+class RecipeRepositoryTestCase: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

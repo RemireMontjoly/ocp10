@@ -44,7 +44,7 @@ class RecipeDetail: UIViewController {
         if buttonItem.tintColor == .white {
             buttonItem.tintColor = .green
             // Add the recipe to favorite (CoreData)
-            favoriteRepository.saveRecipe(recipeFav: recipe)
+            favoriteRepository.addRecipeToFav(recipeFav: recipe)
         } else {
             buttonItem.tintColor = .white
             // Delete the recipe from Core Data
