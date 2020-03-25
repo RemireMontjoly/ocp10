@@ -36,20 +36,6 @@
             BlueprintName = "Reciplease"
             ReferencedContainer = "container:Reciplease.xcodeproj">
          </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C14DA62823E039D600AD6D35"
-            BuildableName = "RecipleaseTests.xctest"
-            BlueprintName = "RecipleaseTests"
-            ReferencedContainer = "container:Reciplease.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAAA1AD3A8A1B59AB91319EE40752C6D"
-            BuildableName = "Alamofire.framework"
-            BlueprintName = "Alamofire"
-            ReferencedContainer = "container:Pods/Pods.xcodeproj">
-         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference

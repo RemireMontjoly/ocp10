@@ -84,9 +84,6 @@ class FavoriteRepository {
         }
     }
 
-//    func save() {
-//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-//    }
 }
 
 

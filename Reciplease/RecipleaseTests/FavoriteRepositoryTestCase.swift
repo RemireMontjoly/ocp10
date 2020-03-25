@@ -10,14 +10,11 @@ import XCTest
 import CoreData
 @testable import Reciplease
 
-//on choisit le nom de la classe
 class FavoriteRepositoryTestCase: XCTestCase {
 
     var sut: FavoriteRepository!
 
-    // setUp() est appelé avant chaque test.
     override func setUp() {
-        //On rajoute super.setUp()
         super.setUp()
         // DI
         sut = FavoriteRepository(container: mockPersistentContainer)
@@ -31,7 +28,6 @@ class FavoriteRepositoryTestCase: XCTestCase {
         flushData()
     }
 
-    // le nom de la fonction doit commencer par "test"
     func test_Fetch_All_RecipeFav() {
         //Given a storage with two RecipeFav objects (from setup)
 
@@ -82,26 +78,14 @@ class FavoriteRepositoryTestCase: XCTestCase {
         //When save
         sut.save()
 
-        //Then assert save is called via notification (wait)
-        waitForExpectations(timeout: 1, handler: nil)
-    }
-
-    // Ne fonctionne pas pour l'instant mais: ??????? Faut-il vraiment tester les cas d'erreur ??????????
-    func test_getRecipe_error() {
-        flushData()
-        let items = sut.getRecipeFav()
-        let count = items.count
-        XCTAssertTrue(count == 0)
+        //Then assert there is 3 items in store
+        waitForExpectations(timeout: 2.0) { error in
+            XCTAssertTrue(self.numberOfItemsInPersistentStore() == 3)
+            XCTAssertNil(error, "Save did not occur")// comptage nombre items.
+        }
     }
 
     //MARK: mock in-memory persistent store
-
-    // Les deux fonctionnent - Mais pour le premier faut cocher - lequel choisir ???
-    //    lazy var managedObjectModel: NSManagedObjectModel = {
-    //        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
-    //        return managedObjectModel
-    //    }()
-
     lazy var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "Reciplease", withExtension: "momd")!
         let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL)!

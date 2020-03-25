@@ -29,8 +29,13 @@ struct Recipe: Decodable {
     var totalTime: Int16
 }
 
-class RecipeRepository {
+protocol Fetching {
+    func getRecipes(ingredient: String, completion: @escaping (Result<JsonObject, AFError>) -> ())
+}
 
+
+class RecipeRepository {
+    
     func getRecipes(ingredient: String, completion: @escaping (Result<JsonObject, AFError>) -> ()) {
         
         let parameters: Parameters = ["app_id": appId, "app_key": appKey, "q": ingredient]
